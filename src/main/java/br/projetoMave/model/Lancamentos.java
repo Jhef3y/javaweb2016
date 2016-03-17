@@ -7,11 +7,15 @@ package br.projetoMave.model;
 
 import java.util.Date;
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,7 +25,7 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "lancamentos")
-public class Lancamentos {
+public class Lancamentos{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +41,11 @@ public class Lancamentos {
     
     @Column(name = "ds_Lancamentos")
     private String dsLancamentos;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "despesas_id")
+    private Despesas despesas;
+    
     public Lancamentos() {
     }
 
